@@ -1,9 +1,11 @@
 name: Lint Ruby
 
+# tmp
 on:
   push:
     branches:
     - master
+    - feature/tmp/steep2
     paths:
     - "**/*.rb"
     - "**/*.gemspec"

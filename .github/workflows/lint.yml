@@ -47,5 +47,6 @@ jobs:
         bundler-cache: true
     - name: Run Steep
       run: |
+        bundle update
         bundle exec rbs collection install
         bundle exec rake steep

@@ -1,0 +1,120 @@
+# GRPC contains the General RPC module.
+module GRPC
+  #
+  # Base class for interception in GRPC
+  #
+  class Interceptor
+    #
+    # @param [Hash] options A hash of options that will be used
+    #   by the interceptor. This is an EXPERIMENTAL API.
+    #
+    def initialize: (?::Hash[untyped, untyped] options) -> void
+  end
+
+  #
+  # ClientInterceptor allows for wrapping outbound gRPC client stub requests.
+  # This is an EXPERIMENTAL API.
+  #
+  class ClientInterceptor < Interceptor
+    #
+    # Intercept a unary request response call
+    #
+    # @param [Object] request
+    # @param [GRPC::ActiveCall] call
+    # @param [String] method
+    # @param [Hash] metadata
+    #
+    def request_response: (?request: untyped?, ?call: untyped?, ?method: untyped?, ?metadata: untyped?) { () -> untyped } -> untyped
+
+    #
+    # Intercept a client streaming call
+    #
+    # @param [Enumerable] requests
+    # @param [GRPC::ActiveCall] call
+    # @param [String] method
+    # @param [Hash] metadata
+    #
+    def client_streamer: (?requests: untyped?, ?call: untyped?, ?method: untyped?, ?metadata: untyped?) { () -> untyped } -> untyped
+
+    #
+    # Intercept a server streaming call
+    #
+    # @param [Object] request
+    # @param [GRPC::ActiveCall] call
+    # @param [String] method
+    # @param [Hash] metadata
+    #
+    def server_streamer: (?request: untyped?, ?call: untyped?, ?method: untyped?, ?metadata: untyped?) { () -> untyped } -> untyped
+
+    #
+    # Intercept a BiDi streaming call
+    #
+    # @param [Enumerable] requests
+    # @param [GRPC::ActiveCall] call
+    # @param [String] method
+    # @param [Hash] metadata
+    #
+    def bidi_streamer: (?requests: untyped?, ?call: untyped?, ?method: untyped?, ?metadata: untyped?) { () -> untyped } -> untyped
+  end
+
+  #
+  # ServerInterceptor allows for wrapping gRPC server execution handling.
+  # This is an EXPERIMENTAL API.
+  #
+  class ServerInterceptor < Interceptor
+    #
+    # Intercept a unary request response call.
+    #
+    # @param [Object] request
+    # @param [GRPC::ActiveCall::SingleReqView] call
+    # @param [Method] method
+    #
+    def request_response: (?request: untyped?, ?call: untyped?, ?method: untyped?) { () -> untyped } -> untyped
+
+    #
+    # Intercept a client streaming call
+    #
+    # @param [GRPC::ActiveCall::MultiReqView] call
+    # @param [Method] method
+    #
+    def client_streamer: (?call: untyped?, ?method: untyped?) { () -> untyped } -> untyped
+
+    #
+    # Intercept a server streaming call
+    #
+    # @param [Object] request
+    # @param [GRPC::ActiveCall::SingleReqView] call
+    # @param [Method] method
+    #
+    def server_streamer: (?request: untyped?, ?call: untyped?, ?method: untyped?) { () -> untyped } -> untyped
+
+    #
+    # Intercept a BiDi streaming call
+    #
+    # @param [Enumerable<Object>] requests
+    # @param [GRPC::ActiveCall::MultiReqView] call
+    # @param [Method] method
+    #
+    def bidi_streamer: (?requests: untyped?, ?call: untyped?, ?method: untyped?) { () -> untyped } -> untyped
+  end
+
+  #
+  # Represents the context in which an interceptor runs. Used to provide an
+  # injectable mechanism for handling interception. This is an EXPERIMENTAL API.
+  #
+  class InterceptionContext
+    #
+    # @param interceptors [Array<GRPC::Interceptor>]
+    #
+    def initialize: (?untyped interceptors) -> void
+
+    #
+    # Intercept the call and fire out to interceptors in a FIFO execution.
+    # This is an EXPERIMENTAL API.
+    #
+    # @param [Symbol] type The request type
+    # @param [Hash] args The arguments for the call
+    #
+    def intercept!: (untyped type, ?::Hash[untyped, untyped] args) { () -> untyped } -> untyped
+  end
+end

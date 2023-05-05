@@ -1,0 +1,101 @@
+module WEBrick
+  class HTTPResponse
+    class InvalidHeader < StandardError
+    end
+
+    attr_reader http_version: untyped
+
+    attr_reader status: untyped
+
+    attr_reader header: untyped
+
+    attr_reader cookies: untyped
+
+    attr_accessor reason_phrase: untyped
+
+    attr_accessor body: untyped
+
+    attr_accessor request_method: untyped
+
+    attr_accessor request_uri: untyped
+
+    attr_accessor request_http_version: untyped
+
+    attr_accessor filename: untyped
+
+    attr_accessor keep_alive: untyped
+
+    attr_reader config: untyped
+
+    attr_reader sent_size: untyped
+
+    attr_accessor upgrade: untyped
+
+    def initialize: (untyped config) -> void
+
+    def status_line: () -> untyped
+
+    def status=: (untyped status) -> untyped
+
+    def []: (untyped field) -> untyped
+
+    def []=: (untyped field, untyped value) -> untyped
+
+    def content_length: () -> (untyped | nil)
+
+    def content_length=: (untyped len) -> untyped
+
+    def content_type: () -> untyped
+
+    def content_type=: (untyped type) -> untyped
+
+    def each: () { (untyped, untyped) -> untyped } -> untyped
+
+    def chunked?: () -> untyped
+
+    def chunked=: (untyped val) -> untyped
+
+    def keep_alive?: () -> untyped
+
+    def upgrade!: (untyped protocol) -> untyped
+
+    def send_response: (untyped socket) -> untyped
+
+    def setup_header: () -> (nil | untyped)
+
+    def make_body_tempfile: () -> (nil | untyped)
+
+    def remove_body_tempfile: () -> (untyped | nil)
+
+    def send_header: (untyped socket) -> untyped
+
+    def send_body: (untyped socket) -> untyped
+
+    def set_redirect: (untyped status, untyped url) -> untyped
+
+    def set_error: (untyped ex, ?bool backtrace) -> (nil | untyped)
+
+    private
+
+    def check_header: (untyped header_value) -> untyped
+
+    def error_body: (untyped backtrace, untyped ex, untyped host, untyped port) -> untyped
+
+    def send_body_io: (untyped socket) -> untyped
+
+    def send_body_string: (untyped socket) -> (nil | untyped | untyped | nil)
+
+    def send_body_proc: (untyped socket) -> (nil | untyped)
+
+    class ChunkedWrapper
+      def initialize: (untyped socket, untyped resp) -> void
+
+      def write: (untyped buf) -> (0 | untyped)
+
+      def <<: (*untyped buf) -> self
+    end
+
+    # preserved for compatibility with some 3rd-party handlers
+    def _write_data: (untyped socket, untyped data) -> untyped
+  end
+end

@@ -1,0 +1,126 @@
+module WEBrick
+  class HTTPRequest
+    BODY_CONTAINABLE_METHODS: ::Array["POST" | "PUT"]
+
+    attr_reader request_line: untyped
+
+    attr_reader request_method: untyped
+
+    attr_reader unparsed_uri: untyped
+
+    attr_reader http_version: untyped
+
+    attr_reader request_uri: untyped
+
+    attr_reader path: untyped
+
+    attr_accessor script_name: untyped
+
+    attr_accessor path_info: untyped
+
+    attr_accessor query_string: untyped
+
+    attr_reader raw_header: untyped
+
+    attr_reader header: untyped
+
+    attr_reader cookies: untyped
+
+    attr_reader accept: untyped
+
+    attr_reader accept_charset: untyped
+
+    attr_reader accept_encoding: untyped
+
+    attr_reader accept_language: untyped
+
+    attr_accessor user: untyped
+
+    attr_reader addr: untyped
+
+    attr_reader peeraddr: untyped
+
+    attr_reader attributes: untyped
+
+    attr_reader keep_alive: untyped
+
+    attr_reader request_time: untyped
+
+    def initialize: (untyped config) -> void
+
+    def continue: () -> (untyped | nil)
+
+    def body: () ?{ () -> untyped } -> untyped
+
+    def body_reader: () -> self
+
+    # for IO.copy_stream.
+    def readpartial: (untyped size, ?untyped buf) -> untyped
+
+    def query: () -> untyped
+
+    def content_length: () -> untyped
+
+    def content_type: () -> untyped
+
+    def []: (untyped header_name) -> (untyped | nil)
+
+    def each: () { (untyped, untyped) -> untyped } -> (untyped | nil)
+
+    def host: () -> untyped
+
+    def port: () -> untyped
+
+    def server_name: () -> untyped
+
+    def remote_ip: () -> untyped
+
+    def ssl?: () -> untyped
+
+    def keep_alive?: () -> untyped
+
+    def to_s: () -> untyped
+
+    def fixup: () -> untyped
+
+    def meta_vars: () -> untyped
+
+    private
+
+    MAX_URI_LENGTH: 2083
+
+    # same as Mongrel, Thin and Puma
+    MAX_HEADER_LENGTH: untyped
+
+    def read_request_line: (untyped socket) -> untyped
+
+    def read_header: (untyped socket) -> untyped
+
+    def parse_uri: (untyped str, ?::String scheme) -> untyped
+
+    def parse_host_request_line: (untyped host) -> untyped
+
+    def read_body: (untyped socket, untyped block) -> (nil | untyped)
+
+    def read_chunk_size: (untyped socket) -> untyped
+
+    def read_chunked: (untyped socket, untyped block) -> untyped
+
+    def _read_data: (untyped io, untyped method, *untyped arg) -> untyped
+
+    def read_line: (untyped io, ?::Integer size) -> untyped
+
+    def read_data: (untyped io, untyped size) -> untyped
+
+    def parse_query: () -> untyped
+
+    PrivateNetworkRegexp: ::Regexp
+
+    # It's said that all X-Forwarded-* headers will contain more than one
+    # (comma-separated) value if the original request already contained one of
+    # these headers. Since we could use these values as Host header, we choose
+    # the initial(first) value. (apr_table_mergen() adds new value after the
+    # existing value with ", " prefix)
+    def setup_forwarded_info: () -> untyped
+  end
+end

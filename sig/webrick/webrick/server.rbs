@@ -1,0 +1,52 @@
+module WEBrick
+  class ServerError < StandardError
+  end
+
+  class SimpleServer
+    def self.start: () { () -> untyped } -> untyped
+  end
+
+  class Daemon
+    def self.start: () ?{ () -> untyped } -> untyped
+  end
+
+  class GenericServer
+    attr_reader status: untyped
+
+    attr_reader config: untyped
+
+    attr_reader logger: untyped
+
+    attr_reader tokens: untyped
+
+    attr_reader listeners: untyped
+
+    def initialize: (?::Hash[untyped, untyped] config, ?untyped default) -> void
+
+    def []: (untyped key) -> untyped
+
+    def start: () { () -> untyped } -> untyped
+
+    def stop: () -> untyped
+
+    def shutdown: () -> untyped
+
+    def run: (untyped sock) -> untyped
+
+    private
+
+    def accept_client: (untyped svr) -> untyped
+
+    def start_thread: (untyped sock) { () -> untyped } -> untyped
+
+    def call_callback: (untyped callback_name, *untyped args) -> untyped
+
+    def setup_shutdown_pipe: () -> untyped
+
+    def cleanup_shutdown_pipe: (untyped shutdown_pipe) -> untyped
+
+    def alarm_shutdown_pipe: () { (untyped) -> untyped } -> untyped
+
+    def cleanup_listener: () -> untyped
+  end
+end

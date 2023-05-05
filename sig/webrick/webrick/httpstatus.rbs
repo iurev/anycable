@@ -1,0 +1,96 @@
+module WEBrick
+  #
+  # This module is used to manager HTTP status codes.
+  #
+  # See http://www.w3.org/Protocols/rfc2616/rfc2616-sec10.html for more
+  # information.
+  module HTTPStatus
+    #
+    # Root of the HTTP status class hierarchy
+    class Status < StandardError
+      attr_reader self.code: untyped
+
+      attr_reader self.reason_phrase: untyped
+
+      # Returns the HTTP status code
+      def code: () -> untyped
+
+      # Returns the HTTP status description
+      def reason_phrase: () -> untyped
+
+      alias to_i code
+    end
+
+    # Root of the HTTP info statuses
+    class Info < Status
+    end
+
+    # Root of the HTTP success statuses
+    class Success < Status
+    end
+
+    # Root of the HTTP redirect statuses
+    class Redirect < Status
+    end
+
+    # Root of the HTTP error statuses
+    class Error < Status
+    end
+
+    # Root of the HTTP client error statuses
+    class ClientError < Error
+    end
+
+    # Root of the HTTP server error statuses
+    class ServerError < Error
+    end
+
+    class EOFError < StandardError
+    end
+
+    # HTTP status codes and descriptions
+    StatusMessage: { 100 => "Continue", 101 => "Switching Protocols", 200 => "OK", 201 => "Created", 202 => "Accepted", 203 => "Non-Authoritative Information", 204 => "No Content", 205 => "Reset Content", 206 => "Partial Content", 207 => "Multi-Status", 300 => "Multiple Choices", 301 => "Moved Permanently", 302 => "Found", 303 => "See Other", 304 => "Not Modified", 305 => "Use Proxy", 307 => "Temporary Redirect", 400 => "Bad Request", 401 => "Unauthorized", 402 => "Payment Required", 403 => "Forbidden", 404 => "Not Found", 405 => "Method Not Allowed", 406 => "Not Acceptable", 407 => "Proxy Authentication Required", 408 => "Request Timeout", 409 => "Conflict", 410 => "Gone", 411 => "Length Required", 412 => "Precondition Failed", 413 => "Request Entity Too Large", 414 => "Request-URI Too Large", 415 => "Unsupported Media Type", 416 => "Request Range Not Satisfiable", 417 => "Expectation Failed", 422 => "Unprocessable Entity", 423 => "Locked", 424 => "Failed Dependency", 426 => "Upgrade Required", 428 => "Precondition Required", 429 => "Too Many Requests", 431 => "Request Header Fields Too Large", 451 => "Unavailable For Legal Reasons", 500 => "Internal Server Error", 501 => "Not Implemented", 502 => "Bad Gateway", 503 => "Service Unavailable", 504 => "Gateway Timeout", 505 => "HTTP Version Not Supported", 507 => "Insufficient Storage", 511 => "Network Authentication Required" }
+
+    # Maps a status code to the corresponding Status class
+    CodeToError: ::Hash[untyped, untyped]
+
+    #
+    # Returns the description corresponding to the HTTP status +code+
+    #
+    #   WEBrick::HTTPStatus.reason_phrase 404
+    #   => "Not Found"
+    def self?.reason_phrase: (untyped code) -> untyped
+
+    #
+    # Is +code+ an informational status?
+    def self?.info?: (untyped code) -> untyped
+
+    #
+    # Is +code+ a successful status?
+    def self?.success?: (untyped code) -> untyped
+
+    #
+    # Is +code+ a redirection status?
+    def self?.redirect?: (untyped code) -> untyped
+
+    #
+    # Is +code+ an error status?
+    def self?.error?: (untyped code) -> untyped
+
+    #
+    # Is +code+ a client error status?
+    def self?.client_error?: (untyped code) -> untyped
+
+    #
+    # Is +code+ a server error status?
+    def self?.server_error?: (untyped code) -> untyped
+
+    #
+    # Returns the status class corresponding to +code+
+    #
+    #   WEBrick::HTTPStatus[302]
+    #   => WEBrick::HTTPStatus::NotFound
+    #
+    def self.[]: (untyped code) -> untyped
+  end
+end

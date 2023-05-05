@@ -1,6 +1,7 @@
 # Download sources
 sources:
-  - name: ruby/gem_rbs_collection
+  - type: git
+    name: ruby/gem_rbs_collection
     remote: https://github.com/ruby/gem_rbs_collection.git
     revision: main
     repo_dir: gems
@@ -18,12 +19,14 @@ gems:
   - name: mutex_m
   - name: date
   - name: time
-  - name: set
   - name: tempfile
   - name: tsort
   - name: openssl
-  # Skip loading rbs gem's RBS.
-  # It's unnecessary if you don't use rbs as a library.
+  - name: anyway_config
+  - name: webrick
+    ignore: true
+  - name: grpc
+    ignore: true
   - name: rbs
     ignore: true
   - name: steep

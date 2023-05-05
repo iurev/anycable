@@ -1,0 +1,57 @@
+module WEBrick
+  class CGI
+    CGIError: untyped
+
+    attr_reader config: untyped
+
+    attr_reader logger: untyped
+
+    def initialize: (*untyped args) -> void
+
+    def []: (untyped key) -> untyped
+
+    def start: (?untyped env, ?untyped stdin, ?untyped stdout) -> untyped
+
+    def service: (untyped req, untyped res) -> untyped
+
+    class Socket
+      private
+
+      def initialize: (untyped config, untyped env, untyped stdin, untyped stdout) -> void
+
+      def request_line: () -> ::String
+
+      def setup_header: () -> untyped
+
+      def add_header: (untyped hdrname, untyped value) -> (untyped | nil)
+
+      def input: () -> untyped
+
+      public
+
+      def peeraddr: () -> ::Array[nil | untyped]
+
+      def addr: () -> ::Array[nil | untyped]
+
+      def gets: (?untyped eol, ?untyped? size) -> untyped
+
+      def read: (?untyped? size) -> untyped
+
+      def each: () { (untyped) -> untyped } -> untyped
+
+      def eof?: () -> untyped
+
+      def <<: (untyped data) -> untyped
+
+      def write: (untyped data) -> untyped
+
+      def cert: () -> (nil | untyped)
+
+      def peer_cert: () -> (nil | untyped)
+
+      def peer_cert_chain: () -> (nil | untyped)
+
+      def cipher: () -> (nil | untyped)
+    end
+  end
+end

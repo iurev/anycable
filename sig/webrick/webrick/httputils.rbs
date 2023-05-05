@@ -1,0 +1,91 @@
+module WEBrick
+  CR: "\r"
+
+  LF: "\n"
+
+  CRLF: "\r\n"
+
+  module HTTPUtils
+    def self?.normalize_path: (untyped path) -> untyped
+
+    DefaultMimeTypes: ::Hash[::String, "application/postscript" | "text/plain" | "video/x-msvideo" | "image/avif" | "application/octet-stream" | "image/bmp" | "application/pkix-cert" | "application/pkix-crl" | "application/x-x509-ca-cert" | "text/css" | "application/msword" | "application/x-dvi" | "text/x-setext" | "image/gif" | "text/html" | "image/x-icon" | "image/jpeg" | "application/javascript" | "application/json" | "video/quicktime" | "video/mp4" | "video/mpeg" | "font/otf" | "image/x-portable-bitmap" | "application/pdf" | "image/x-portable-graymap" | "image/png" | "image/x-portable-anymap" | "image/x-portable-pixmap" | "application/vnd.ms-powerpoint" | "image/x-cmu-raster" | "application/rtf" | "text/sgml" | "image/svg+xml" | "image/tiff" | "font/collection" | "font/ttf" | "application/wasm" | "video/webm" | "application/manifest+json" | "image/webp" | "font/woff" | "font/woff2" | "image/x-xbitmap" | "application/vnd.ms-excel" | "text/xml" | "image/x-xpixmap" | "image/x-xwindowdump" | "application/zip"]
+
+    def self?.load_mime_types: (untyped file) -> untyped
+
+    def self?.mime_type: (untyped filename, untyped mime_tab) -> untyped
+
+    def self?.parse_header: (untyped raw) -> untyped
+
+    def self?.split_header_value: (untyped str) -> untyped
+
+    def self?.parse_range_header: (untyped ranges_specifier) -> (nil | untyped | nil)
+
+    def self?.parse_qvalues: (untyped value) -> untyped
+
+    def self?.dequote: (untyped str) -> untyped
+
+    def self?.quote: (untyped str) -> untyped
+
+    class FormData < String
+      EmptyRawHeader: ::Array[untyped]
+
+      EmptyHeader: ::Hash[untyped, untyped]
+
+      attr_accessor name: untyped
+
+      attr_accessor filename: untyped
+
+      attr_accessor next_data: untyped
+
+      def initialize: (*untyped args) -> void
+
+      def []: (*untyped key) -> untyped
+
+      def <<: (untyped str) -> self
+
+      def append_data: (untyped data) -> self
+
+      def each_data: () { (untyped) -> untyped } -> untyped
+
+      def list: () -> untyped
+
+      alias to_ary list
+
+      def to_s: () -> untyped
+    end
+
+    def self?.parse_query: (untyped str) -> untyped
+
+    def self?.parse_form_data: (untyped io, untyped boundary) -> untyped
+
+    def self?._make_regex: (untyped str) -> ::Regexp
+
+    def self?._make_regex!: (untyped str) -> ::Regexp
+
+    def self?._escape: (untyped str, untyped regex) -> untyped
+
+    def self?._unescape: (untyped str, untyped regex) -> untyped
+
+    UNESCAPED: untyped
+
+    UNESCAPED_FORM: untyped
+
+    NONASCII: untyped
+
+    ESCAPED: ::Regexp
+
+    UNESCAPED_PCHAR: untyped
+
+    def self?.escape: (untyped str) -> untyped
+
+    def self?.unescape: (untyped str) -> untyped
+
+    def self?.escape_form: (untyped str) -> untyped
+
+    def self?.unescape_form: (untyped str) -> untyped
+
+    def self?.escape_path: (untyped str) -> untyped
+
+    def self?.escape8bit: (untyped str) -> untyped
+  end
+end

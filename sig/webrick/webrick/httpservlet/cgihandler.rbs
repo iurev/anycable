@@ -1,0 +1,17 @@
+module WEBrick
+  module HTTPServlet
+    class CGIHandler < AbstractServlet
+      Ruby: untyped
+
+      CGIRunner: ::String
+
+      CGIRunnerArray: ::Array[untyped | ::String]
+
+      def initialize: (untyped server, untyped name) -> void
+
+      def do_GET: (untyped req, untyped res) -> untyped
+
+      alias do_POST do_GET
+    end
+  end
+end

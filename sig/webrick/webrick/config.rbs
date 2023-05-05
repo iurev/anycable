@@ -1,0 +1,17 @@
+module WEBrick
+  module Config
+    LIBDIR: untyped
+
+    # for GenericServer
+    General: untyped
+
+    # for HTTPServer, HTTPRequest, HTTPResponse ...
+    HTTP: untyped
+
+    FileHandler: { NondisclosureName: ::Array[".ht*" | "*~"], FancyIndexing: false, HandlerTable: ::Hash[untyped, untyped], HandlerCallback: nil, DirectoryCallback: nil, FileCallback: nil, UserDir: nil, AcceptableLanguages: ::Array[untyped] }
+
+    BasicAuth: { AutoReloadUserDB: true }
+
+    DigestAuth: { Algorithm: "MD5-sess", Domain: nil, Qop: ::Array["auth"], UseOpaque: true, UseNextNonce: false, CheckNc: false, UseAuthenticationInfoHeader: true, AutoReloadUserDB: true, NonceExpirePeriod: untyped, NonceExpireDelta: 60, InternetExplorerHack: true, OperaHack: true }
+  end
+end

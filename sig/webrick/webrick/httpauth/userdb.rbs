@@ -1,0 +1,13 @@
+module WEBrick
+  module HTTPAuth
+    module UserDB
+      attr_accessor auth_type: untyped
+
+      def make_passwd: (untyped realm, untyped user, untyped pass) -> untyped
+
+      def set_passwd: (untyped realm, untyped user, untyped pass) -> untyped
+
+      def get_passwd: (untyped realm, untyped user, ?bool reload_db) -> untyped
+    end
+  end
+end

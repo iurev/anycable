@@ -1,0 +1,85 @@
+module WEBrick
+  class BasicLog
+    FATAL: 1
+
+    ERROR: 2
+
+    WARN: 3
+
+    INFO: 4
+
+    DEBUG: 5
+
+    # log-level, messages above this level will be logged
+    attr_accessor level: untyped
+
+    def initialize: (?untyped? log_file, ?untyped? level) -> void
+
+    #
+    # Closes the logger (also closes the log device associated to the logger)
+    def close: () -> untyped
+
+    def log: (untyped level, untyped data) -> (untyped | nil)
+
+    #
+    # Synonym for log(INFO, obj.to_s)
+    def <<: (untyped obj) -> untyped
+
+    # Shortcut for logging a FATAL message
+    def fatal: (untyped msg) -> untyped
+
+    # Shortcut for logging an ERROR message
+    def error: (untyped msg) -> untyped
+
+    # Shortcut for logging a WARN message
+    def warn: (untyped msg) -> untyped
+
+    # Shortcut for logging an INFO message
+    def info: (untyped msg) -> untyped
+
+    # Shortcut for logging a DEBUG message
+    def debug: (untyped msg) -> untyped
+
+    # Will the logger output FATAL messages?
+    def fatal?: () -> untyped
+
+    # Will the logger output ERROR messages?
+    def error?: () -> untyped
+
+    # Will the logger output WARN messages?
+    def warn?: () -> untyped
+
+    # Will the logger output INFO messages?
+    def info?: () -> untyped
+
+    # Will the logger output DEBUG messages?
+    def debug?: () -> untyped
+
+    private
+
+    #
+    # Formats +arg+ for the logger
+    #
+    # * If +arg+ is an Exception, it will format the error message and
+    #   the back trace.
+    # * If +arg+ responds to #to_str, it will return it.
+    # * Otherwise it will return +arg+.inspect.
+    def format: (untyped arg) -> untyped
+  end
+
+  class Log < BasicLog
+    # Format of the timestamp which is applied to each logged line.  The
+    # default is <tt>"[%Y-%m-%d %H:%M:%S]"</tt>
+    attr_accessor time_format: untyped
+
+    #
+    # Same as BasicLog#initialize
+    #
+    # You can set the timestamp format through #time_format
+    def initialize: (?untyped? log_file, ?untyped? level) -> void
+
+    #
+    # Same as BasicLog#log
+    def log: (untyped level, untyped data) -> untyped
+  end
+end

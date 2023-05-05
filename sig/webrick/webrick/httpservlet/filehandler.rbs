@@ -1,0 +1,66 @@
+module WEBrick
+  module HTTPServlet
+    class DefaultFileHandler < AbstractServlet
+      def initialize: (untyped server, untyped local_path) -> void
+
+      def do_GET: (untyped req, untyped res) -> untyped
+
+      def not_modified?: (untyped req, untyped res, untyped mtime, untyped etag) -> (true | false)
+
+      # returns a lambda for webrick/httpresponse.rb send_body_proc
+      def multipart_body: (untyped body, untyped parts, untyped boundary, untyped mtype, untyped filesize) -> untyped
+
+      def make_partial_content: (untyped req, untyped res, untyped filename, untyped filesize) -> untyped
+
+      def prepare_range: (untyped range, untyped filesize) -> untyped
+    end
+
+    class FileHandler < AbstractServlet
+      HandlerTable: untyped
+
+      def self.add_handler: (untyped suffix, untyped handler) -> untyped
+
+      def self.remove_handler: (untyped suffix) -> untyped
+
+      def initialize: (untyped server, untyped root, ?::Hash[untyped, untyped] options, ?untyped default) -> void
+
+      def set_filesystem_encoding: (untyped str) -> untyped
+
+      def service: (untyped req, untyped res) -> untyped
+
+      def do_GET: (untyped req, untyped res) -> (untyped | nil)
+
+      def do_POST: (untyped req, untyped res) -> (untyped | nil)
+
+      def do_OPTIONS: (untyped req, untyped res) -> (untyped | nil)
+
+      private
+
+      def trailing_pathsep?: (untyped path) -> untyped
+
+      def prevent_directory_traversal: (untyped req, untyped res) -> untyped
+
+      def exec_handler: (untyped req, untyped res) -> (true | false)
+
+      def get_handler: (untyped req, untyped res) -> untyped
+
+      def set_filename: (untyped req, untyped res) -> (true | false)
+
+      def check_filename: (untyped req, untyped res, untyped name) -> (untyped | nil)
+
+      def shift_path_info: (untyped req, untyped res, untyped path_info, ?untyped? base) -> untyped
+
+      def search_index_file: (untyped req, untyped res) -> (untyped | nil)
+
+      def search_file: (untyped req, untyped res, untyped basename) -> (untyped | nil)
+
+      def call_callback: (untyped callback_name, untyped req, untyped res) -> (untyped | nil)
+
+      def windows_ambiguous_name?: (untyped name) -> (true | false)
+
+      def nondisclosure_name?: (untyped name) -> (true | false)
+
+      def set_dir_list: (untyped req, untyped res) -> untyped
+    end
+  end
+end

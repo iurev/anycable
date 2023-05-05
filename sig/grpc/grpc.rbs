@@ -1,0 +1,14 @@
+module Grpc
+  module Health
+    class Checker
+    end
+    module V1
+      module HealthCheckResponse
+        module ServingStatus
+          SERVING: String
+          NOT_SERVING: String
+        end
+      end
+    end
+  end
+end

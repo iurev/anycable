@@ -1,0 +1,9 @@
+module WEBrick
+  module HTTPAuth
+    def self?._basic_auth: (untyped req, untyped res, untyped realm, untyped req_field, untyped res_field, untyped err_type, untyped block) -> (nil | untyped)
+
+    def self?.basic_auth: (untyped req, untyped res, untyped realm) { () -> untyped } -> untyped
+
+    def self?.proxy_basic_auth: (untyped req, untyped res, untyped realm) { () -> untyped } -> untyped
+  end
+end

@@ -1,0 +1,21 @@
+module WEBrick
+  module HTTPAuth
+    class Htdigest
+      include UserDB
+
+      def initialize: (untyped path) -> void
+
+      def reload: () -> untyped
+
+      def flush: (?untyped? output) -> untyped
+
+      def get_passwd: (untyped realm, untyped user, untyped reload_db) -> untyped
+
+      def set_passwd: (untyped realm, untyped user, untyped pass) -> untyped
+
+      def delete_passwd: (untyped realm, untyped user) -> (untyped | nil)
+
+      def each: () { (untyped) -> untyped } -> untyped
+    end
+  end
+end

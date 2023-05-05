@@ -1,0 +1,46 @@
+module WEBrick
+  module Config
+  end
+
+  class HTTPRequest
+    attr_reader cipher: untyped
+
+    attr_reader server_cert: untyped
+
+    attr_reader client_cert: untyped
+
+    alias orig_parse parse
+
+    def parse: (?untyped? socket) -> untyped
+
+    alias orig_parse_uri parse_uri
+
+    private
+
+    def parse_uri: (untyped str, ?::String scheme) -> untyped
+
+    public
+
+    alias orig_meta_vars meta_vars
+
+    def meta_vars: () -> untyped
+  end
+
+  class SNIRequest
+    attr_reader host: untyped
+
+    attr_reader addr: untyped
+
+    attr_reader port: untyped
+
+    def initialize: (untyped sslsocket, untyped hostname) -> void
+  end
+
+  class HTTPServer < ::WEBrick::GenericServer
+    def ssl_servername_callback: (untyped sslsocket, ?untyped? hostname) -> untyped
+
+    alias orig_virtual_host virtual_host
+
+    def virtual_host: (untyped server) -> untyped
+  end
+end

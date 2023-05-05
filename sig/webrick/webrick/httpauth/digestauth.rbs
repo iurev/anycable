@@ -1,0 +1,53 @@
+module WEBrick
+  module HTTPAuth
+    class DigestAuth
+      include Authenticator
+
+      AuthScheme: "Digest"
+
+      OpaqueInfo: untyped
+
+      attr_reader algorithm: untyped
+
+      attr_reader qop: untyped
+
+      def self.make_passwd: (untyped realm, untyped user, untyped pass) -> untyped
+
+      def initialize: (untyped config, ?untyped default) -> void
+
+      def authenticate: (untyped req, untyped res) -> true
+
+      def challenge: (untyped req, untyped res, ?bool stale) -> untyped
+
+      private
+
+      MustParams: ::Array["username" | "realm" | "nonce" | "uri" | "response"]
+
+      MustParamsAuth: ::Array["cnonce" | "nc"]
+
+      def _authenticate: (untyped req, untyped res) -> (false | :nonce_is_stale | true)
+
+      def split_param_value: (untyped string) -> untyped
+
+      def generate_next_nonce: (untyped req) -> untyped
+
+      def check_nonce: (untyped req, untyped auth_req) -> (false | true)
+
+      def generate_opaque: (untyped req) -> untyped
+
+      def check_opaque: (untyped opaque_struct, untyped req, untyped auth_req) -> (false | true)
+
+      def check_uri: (untyped req, untyped auth_req) -> (false | true)
+
+      def hexdigest: (*untyped args) -> untyped
+    end
+
+    class ProxyDigestAuth < DigestAuth
+      include ProxyAuthenticator
+
+      private
+
+      def check_uri: (untyped req, untyped auth_req) -> true
+    end
+  end
+end

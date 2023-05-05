@@ -1,0 +1,17 @@
+# GRPC contains the General RPC module.
+module GRPC
+  # Notifier is useful high-level synchronization primitive.
+  class Notifier
+    attr_reader payload: untyped
+
+    attr_reader notified: untyped
+
+    alias notified? notified
+
+    def initialize: () -> void
+
+    def wait: () -> untyped
+
+    def notify: (untyped payload) -> untyped
+  end
+end

@@ -38,7 +38,7 @@ NO_GRPC = !defined?(::GRPC)
 GRPC_KIT = ENV["ANYCABLE_GRPC_IMPL"] == "grpc_kit"
 
 if GRPC_KIT
-  $stdout.puts "⚠️ Testing against grpc_kit"
+  # $stdout.puts "⚠️ Testing against grpc_kit"
 end
 
 require "json"

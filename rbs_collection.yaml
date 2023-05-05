@@ -10,6 +10,7 @@ sources:
 path: .gem_rbs_collection
 
 gems:
+  - name: singleton
   - name: logger
   - name: monitor
   - name: optparse
@@ -23,9 +24,9 @@ gems:
   - name: tsort
   - name: openssl
   - name: anyway_config
-  - name: webrick
-    ignore: true
   - name: grpc
+    ignore: true
+  - name: grpc_kit
     ignore: true
   - name: rbs
     ignore: true

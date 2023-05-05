@@ -1,5 +1,0 @@
-module WEBrick
-  module HTMLUtils
-    def self?.escape: (untyped string) -> ("" | untyped)
-  end
-end

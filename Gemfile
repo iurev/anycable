@@ -14,7 +14,6 @@ unless ENV["GRPC"] == "false"
   else gem "grpc", "~> 1.37"
   end
 end
-# gem "grpc_kit"
 
 eval_gemfile "gemfiles/rubocop.gemfile"
 eval_gemfile "gemfiles/rbs.gemfile"

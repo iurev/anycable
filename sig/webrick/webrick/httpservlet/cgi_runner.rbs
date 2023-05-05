@@ -1,3 +1,0 @@
-class Object
-  def sysread: (untyped io, untyped size) -> untyped
-end
